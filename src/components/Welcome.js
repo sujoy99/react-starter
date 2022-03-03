@@ -1,3 +1,5 @@
+import React, {useEffect, useState} from 'react';
+
 import {Container} from 'react-bootstrap'
 
 import styled from 'styled-components'
@@ -21,7 +23,20 @@ padding: 10px;
 `;
 
 
+
+
 const Welcome = () => {
+
+  const [tags, setTags] = useState('')
+
+  useEffect(() => {
+    console.log("before", tags)
+
+    setTags("hi")
+
+    console.log(tags)
+
+  })
 
     return (
         <>

@@ -7,6 +7,7 @@ import Welcome from './components/Welcome';
 import Footer from './components/Footer';
 import Book from './components/Book';
 import BookAdd from './components/BookAdd';
+import Form from './components/Form';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -22,6 +23,7 @@ function App() {
             <Route exact path='/' element={< Welcome />}></Route>
             <Route exact path='/add' element={< BookAdd />}></Route>
             <Route exact path='/list' element={< Book />}></Route>
+            <Route exact path='/form' element={< Form />}></Route>
           </Routes>
         </Row>
       </Container>
