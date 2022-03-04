@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import Input from './Input';
 import validation from './validation'
 
-const SignupForm = () => {
+const SignupForm = ({submitForm}) => {
+    console.log(submitForm);
 
     const [values, setValues] = useState({
         fullname: "",
@@ -11,11 +12,10 @@ const SignupForm = () => {
         password: "",
         componentTest: ""
     })
-
     const [errors, setErrors] = useState({})
+    const [dataIsCorrect, setDataIsCorrect] = useState(false)
 
     const handleChange = (e) => {
-        console.log("a", e)
         setValues({
             ...values,
             [e.target.name]: e.target.value
@@ -27,8 +27,16 @@ const SignupForm = () => {
         e.preventDefault();
         console.log(values)
         setErrors(validation(values))
+        console.log(errors);
+        setDataIsCorrect(true)
         console.log("no error---submited")
     }
+
+    useEffect(() => {
+        if(Object.keys(errors).length === 0 && dataIsCorrect){
+            submitForm(true)
+        }
+    }, [errors])
 
     console.log("render")
     return (
@@ -44,19 +52,19 @@ const SignupForm = () => {
 
                     <Col lg={3}>
                         <label htmlFor="">Email</label>
-                        <input type="text" name="email" id="" onChange={handleChange} />
+                        <input type="text" name="email" id="" onChange={handleChange} value={values.email} />
                         {errors.email && <p style={{color:"red"}}>{errors.email}</p>}
                     </Col>
 
                     <Col lg={3}>
                         <label htmlFor="">Password</label>
-                        <input type="text" name="password" id="" onChange={handleChange} />
+                        <input type="text" name="password" id="" onChange={handleChange}  value={values.password} />
                         {errors.password && <p style={{color:"red"}}>{errors.password}</p>}
                     </Col>
 
                     <Col lg={3}>
                         <label htmlFor="">Componet</label>
-                        <Input type="password" name="componentTest" handler={handleChange} />
+                        <Input type="password" name="componentTest" handler={handleChange}  value={values.componentTest} />
                         {errors.componentTest && <p style={{color:"red"}}>{errors.componentTest}</p>}
                     </Col>
 
