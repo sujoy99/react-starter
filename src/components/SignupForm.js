@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import Input from './Input';
 import validation from './validation'
+import TagInput from './TagInput';
 
 const SignupForm = ({submitForm}) => {
     console.log(submitForm);
@@ -66,6 +67,11 @@ const SignupForm = ({submitForm}) => {
                         <label htmlFor="">Componet</label>
                         <Input type="password" name="componentTest" handler={handleChange}  value={values.componentTest} />
                         {errors.componentTest && <p style={{color:"red"}}>{errors.componentTest}</p>}
+                    </Col>
+
+                    <Col lg={12}>
+                        <label htmlFor="">Componet</label>
+                        <TagInput />
                     </Col>
 
                 </Row>
